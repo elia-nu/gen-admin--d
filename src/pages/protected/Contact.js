@@ -1,0 +1,17 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setPageTitle } from "../../features/common/headerSlice";
+
+import Contact from "../../features/contact";
+
+function InternalPage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setPageTitle({ title: "Contacts" }));
+  }, []);
+
+  return <Contact />;
+}
+
+export default InternalPage;
