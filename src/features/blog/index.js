@@ -159,7 +159,7 @@ function Blog() {
   return (
     <>
       <TitleCard
-        title="Blog Management"
+        title="Blogs Management"
         TopSideButtons={
           <TopSideButtons
             applySearch={applySearch}
