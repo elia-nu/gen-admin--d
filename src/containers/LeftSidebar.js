@@ -27,7 +27,7 @@ function LeftSidebar() {
         <li className="mb-2 font-semibold text-xl">
           <Link to={"/app/welcome"}>
             <img
-              className="mask  w-full dark:invert-none  dark:filter-none"
+              className="mask  w-full dark:invert-none  dark:filter-none bg-white"
               src="/logo.png"
               alt="Genshifter Logo"
             />

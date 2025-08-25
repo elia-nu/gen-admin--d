@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import InputText from "../../../components/Input/InputText";
 import MarkdownEditor from "../../../components/Input/MarkdownEditor";
@@ -10,6 +10,7 @@ function UpdateBlogModalBody({ blog, closeModal }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
   const [blogObj, setBlogObj] = useState({
     title: blog.title || "",
     description: blog.description || "",
@@ -65,7 +66,7 @@ function UpdateBlogModalBody({ blog, closeModal }) {
     }
   };
 
-  const updateFormValue = (updateType, value) => {
+  const updateFormValue = (value, updateType) => {
     setErrorMessage("");
     setBlogObj({ ...blogObj, [updateType]: value });
   };
@@ -174,50 +175,47 @@ function UpdateBlogModalBody({ blog, closeModal }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-base-content">
-              Image 1{" "}
-              {blog.image1 && "(Current: " + blog.image1.split("/").pop() + ")"}
-            </span>
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            className="file-input file-input-bordered w-full"
-            onChange={(e) => handleFileChange("image1", e.target.files[0])}
-          />
-        </div>
+        <InputText
+          type="file"
+          updateType="image1"
+          containerStyle=""
+          labelTitle={`Image 1${
+            blog.image1
+              ? " (Current: " + blog.image1.split("/").pop() + ")"
+              : ""
+          }`}
+          updateFormValue={(file, updateType) =>
+            handleFileChange(updateType, file)
+          }
+        />
 
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-base-content">
-              Image 2{" "}
-              {blog.image2 && "(Current: " + blog.image2.split("/").pop() + ")"}
-            </span>
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            className="file-input file-input-bordered w-full"
-            onChange={(e) => handleFileChange("image2", e.target.files[0])}
-          />
-        </div>
+        <InputText
+          type="file"
+          updateType="image2"
+          containerStyle=""
+          labelTitle={`Image 2${
+            blog.image2
+              ? " (Current: " + blog.image2.split("/").pop() + ")"
+              : ""
+          }`}
+          updateFormValue={(file, updateType) =>
+            handleFileChange(updateType, file)
+          }
+        />
 
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-base-content">
-              Image 3{" "}
-              {blog.image3 && "(Current: " + blog.image3.split("/").pop() + ")"}
-            </span>
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            className="file-input file-input-bordered w-full"
-            onChange={(e) => handleFileChange("image3", e.target.files[0])}
-          />
-        </div>
+        <InputText
+          type="file"
+          updateType="image3"
+          containerStyle=""
+          labelTitle={`Image 3${
+            blog.image3
+              ? " (Current: " + blog.image3.split("/").pop() + ")"
+              : ""
+          }`}
+          updateFormValue={(file, updateType) =>
+            handleFileChange(updateType, file)
+          }
+        />
       </div>
 
       <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
